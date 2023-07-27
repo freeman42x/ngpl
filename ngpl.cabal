@@ -68,7 +68,7 @@ library
     -- other-extensions:
 
     -- Other library packages from which modules are imported.
-    build-depends:    base ^>=4.18.0.0
+    build-depends:    base ^>=4.17.1.0
 
     -- Directories containing source files.
     hs-source-dirs:   lib
@@ -91,7 +91,7 @@ executable ngpl
 
     -- Other library packages from which modules are imported.
     build-depends:
-        base ^>=4.18.0.0,
+        base ^>=4.17.1.0,
         ngpl
 
     -- Directories containing source files.
@@ -124,5 +124,5 @@ test-suite ngpl-test
 
     -- Test dependencies.
     build-depends:
-        base ^>=4.18.0.0,
+        base ^>=4.17.1.0,
         ngpl

@@ -6,7 +6,7 @@ pkgs.stdenv.mkDerivation {
   name = "my-env";
   buildInputs = [
     pkgs.cabal-install
-    pkgs.haskell.compiler.ghc962
+    pkgs.haskell.compiler.ghc945
     unstable.haskellPackages.haskell-language-server
   ];
 }
