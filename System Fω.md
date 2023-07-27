@@ -1,6 +1,6 @@
 # System Fω
 
-# High level specification
+## High level specification
 
 System Fω is a typed λ-calculus and the most powerful in a hierarchy of systems introduced by Jean-Yves Girard in the 1970s, including System F and System F<sub>ω</sub>, among others. System Fω allows for polymorphism, higher-kinded types, and type operators. This system is particularly important because it forms the theoretical foundation for many statically typed programming languages and proof assistants.
 
@@ -11,7 +11,7 @@ Here is a brief outline of the specification for System Fω:
     ```
     A, B ::= α | Λα. A | A B | ∀α. A
     ```
-    
+
     Where:
     - α are type variables
     - Λα. A represents type abstraction
@@ -23,7 +23,7 @@ Here is a brief outline of the specification for System Fω:
     ```
     t ::= x | λx:A. t | t t | Λα. t | t A
     ```
-    
+
     Where:
     - x are term variables
     - λx:A. t represents term abstraction (functions)
@@ -36,7 +36,7 @@ Here is a brief outline of the specification for System Fω:
     ```
     Γ ⊢ t : A
     ```
-    
+
     Where:
     - Γ is a typing context, a set of assumptions about the types of variables
     - t is a term
@@ -49,9 +49,9 @@ Here is a brief outline of the specification for System Fω:
     - **Type abstraction rule**: If under the assumption that α is a type, t has type A, then Λα. t has type ∀α. A.
     - **Type application rule**: If t has type ∀α. A and B is a type, then the application tB has type [B/α]A, which denotes the type A where B is substituted for α.
 
-5. **Evaluation rules**: Evaluation rules are used to compute the result of a term. System Fω has standard beta-reduction rules for both term-level and type-level lambda abstraction. 
+5. **Evaluation rules**: Evaluation rules are used to compute the result of a term. System Fω has standard beta-reduction rules for both term-level and type-level lambda abstraction.
 
-6. **Type equivalence**: Type equivalence is defined in System Fω as alpha equivalence, beta equivalence, and eta equivalence, giving it the properties of a normal typed lambda calculus. 
+6. **Type equivalence**: Type equivalence is defined in System Fω as alpha equivalence, beta equivalence, and eta equivalence, giving it the properties of a normal typed lambda calculus.
 
 ## Formal detailed specification
 
@@ -59,31 +59,34 @@ System Fω (System F-omega) is a typed lambda calculus, a formal system in mathe
 
 Before we dive into the details, it's important to define some of the key terminologies we'll be using:
 
-1. **Types**: These are the basic building blocks of the type system. They are used to classify the terms in our system. 
-2. **Terms**: These are the actual computations in our system. 
-3. **Kinds**: These classify types. 
+1. **Types**: These are the basic building blocks of the type system. They are used to classify the terms in our system.
+2. **Terms**: These are the actual computations in our system.
+3. **Kinds**: These classify types.
 4. **Type operators**: These are essentially functions from types to types.
 
 Let's first describe the syntax:
 
 ## Syntax
 
-**Kinds**
+### Kinds
+
 ```
 k ::= * | k -> k
 ```
 
-**Types**
+### Types
+
 ```
 A, B ::= X | A -> B | ∀X::k. A | λX::k. A | A B
 ```
 
-**Terms**
+### Terms
+
 ```
 M, N ::= x | λx:A. M | M N | ΛX::k. M | M [A]
 ```
 
-## Description:
+## Description
 
 - `k ::= * | k -> k` : The kind structure is simple: it either is the kind of proper types (`*`) or is a function kind (`k -> k`).
 - `A, B ::= X | A -> B | ∀X::k. A | λX::k. A | A B` : Types can be type variables (`X`), type functions (`A -> B`), polymorphic types (`∀X::k. A`), type-level lambda abstractions (`λX::k. A`), and type-level applications (`A B`).

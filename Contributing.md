@@ -1,7 +1,7 @@
 # Tasks
 
 * System Fω
-    * specification
-    * implementation
+  * specification
+  * implementation
 * Minimum Viable Product - prototype
 * Bootstrap
