@@ -32,7 +32,7 @@ version:            0.1.0.0
 license:            MIT
 
 -- The file containing the license text.
-license-file:       LICENSE
+license-file:       License.md
 
 -- The package author(s).
 author:             Razvan Flavius Panda

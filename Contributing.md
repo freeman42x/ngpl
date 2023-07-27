@@ -1,7 +1,6 @@
 # Tasks
 
-* System Fω
-  * specification
-  * implementation
-* Minimum Viable Product - prototype
-* Bootstrap
+* Bootstrap - compile NGPL with NGPL
+  * System Fω - Minimum Viable Product - prototype
+    * ✅ specification
+    * implementation
