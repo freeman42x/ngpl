@@ -1,2 +1,3 @@
 # ngpl
-Next Generation Programming Language
+
+Next Generation Programming Language - name subject to change
