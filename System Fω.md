@@ -1,4 +1,6 @@
-# System Fω high level specification
+# System Fω
+
+# High level specification
 
 System Fω is a typed λ-calculus and the most powerful in a hierarchy of systems introduced by Jean-Yves Girard in the 1970s, including System F and System F<sub>ω</sub>, among others. System Fω allows for polymorphism, higher-kinded types, and type operators. This system is particularly important because it forms the theoretical foundation for many statically typed programming languages and proof assistants.
 
@@ -50,3 +52,63 @@ Here is a brief outline of the specification for System Fω:
 5. **Evaluation rules**: Evaluation rules are used to compute the result of a term. System Fω has standard beta-reduction rules for both term-level and type-level lambda abstraction. 
 
 6. **Type equivalence**: Type equivalence is defined in System Fω as alpha equivalence, beta equivalence, and eta equivalence, giving it the properties of a normal typed lambda calculus. 
+
+## Formal detailed specification
+
+System Fω (System F-omega) is a typed lambda calculus, a formal system in mathematical logic and computer science. It is an extension of the second-order lambda calculus, System F, that includes kinds and type operators. System Fω allows quantification over type operators, not just types, as in System F.
+
+Before we dive into the details, it's important to define some of the key terminologies we'll be using:
+
+1. **Types**: These are the basic building blocks of the type system. They are used to classify the terms in our system. 
+2. **Terms**: These are the actual computations in our system. 
+3. **Kinds**: These classify types. 
+4. **Type operators**: These are essentially functions from types to types.
+
+Let's first describe the syntax:
+
+## Syntax
+
+**Kinds**
+```
+k ::= * | k -> k
+```
+
+**Types**
+```
+A, B ::= X | A -> B | ∀X::k. A | λX::k. A | A B
+```
+
+**Terms**
+```
+M, N ::= x | λx:A. M | M N | ΛX::k. M | M [A]
+```
+
+## Description:
+
+- `k ::= * | k -> k` : The kind structure is simple: it either is the kind of proper types (`*`) or is a function kind (`k -> k`).
+- `A, B ::= X | A -> B | ∀X::k. A | λX::k. A | A B` : Types can be type variables (`X`), type functions (`A -> B`), polymorphic types (`∀X::k. A`), type-level lambda abstractions (`λX::k. A`), and type-level applications (`A B`).
+- `M, N ::= x | λx:A. M | M N | ΛX::k. M | M [A]` : Terms can be variables (`x`), lambda abstractions (`λx:A. M`), applications (`M N`), type abstractions (`ΛX::k. M`), and type applications (`M [A]`).
+
+## Typing Rules
+
+The typing rules of System Fω can be specified as follows:
+
+- **Variable**: If `x:A` is in the context Γ, then `Γ ⊢ x : A`.
+- **Abstraction**: If `Γ, x:A ⊢ M : B`, then `Γ ⊢ λx:A. M : A -> B`.
+- **Application**: If `Γ ⊢ M : A -> B` and `Γ ⊢ N : A`, then `Γ ⊢ M N : B`.
+- **Type abstraction**: If `Γ, X::k ⊢ M : A`, then `Γ ⊢ ΛX::k. M : ∀X::k. A`.
+- **Type application**: If `Γ ⊢ M : ∀X::k. A` and `Γ ⊢ B : k`, then `Γ ⊢ M [B] : A[B/X]`.
+- **Type variable**: If `X::k` is in the context Γ, then `Γ ⊢ X : k`.
+- **Arrow type formation**: If `Γ ⊢ A : *` and `Γ ⊢ B : *`, then `Γ ⊢ A -> B : *`.
+- **Universal type formation**: If `Γ, X::k ⊢ A : *`, then `Γ ⊢ ∀X::k. A : *`.
+- **Lambda type formation**: If `Γ, X::k1 ⊢ A : k2`, then `Γ ⊢ λX::k1. A : k1 -> k2`.
+- **Type application formation**: If `Γ ⊢ A : k1 -> k2` and `Γ ⊢ B : k1`, then `Γ ⊢ A B : k2`.
+
+## Evaluation Rules
+
+Evaluation rules in System Fω are standard call-by-name β-reductions for both term-level and type-level lambdas:
+
+- **Term-level β-reduction**: `(λx:A. M) N --> M[N/x]`.
+- **Type-level β-reduction**: `(ΛX::k. M) [A] --> M[A/X]`.
+
+These rules describe the computational aspects of System Fω.
